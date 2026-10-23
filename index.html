@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rantai Makanan | Media Pembelajaran IPAS</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;800&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#06141a;--bg2:#0c2630;--glass:rgba(255,255,255,.07);--line:rgba(120,255,220,.18);--a:#2de2b4;--b:#3fa7ff;--c:#ffc247;--bad:#ff6b7a;--tx:#e8f6f3;--mut:#9fbdb8;--r:20px}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Nunito',sans-serif;color:var(--tx);background:radial-gradient(circle at 15% 10%,#0d3b3a 0,transparent 45%),radial-gradient(circle at 90% 80%,#10305c 0,transparent 45%),var(--bg);min-height:100vh;line-height:1.6}
+h1,h2,h3{font-family:'Sora',sans-serif;line-height:1.25}
+.top{position:sticky;top:0;z-index:50;display:flex;align-items:center;gap:14px;padding:10px 18px;background:rgba(6,20,26,.8);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.brand{font-family:'Sora';font-weight:800;color:var(--a);white-space:nowrap}
+.nav{display:flex;gap:6px;overflow-x:auto;flex:1;scrollbar-width:none}
+.nav button{border:1px solid transparent;background:none;color:var(--mut);font:600 .9rem 'Nunito';padding:9px 14px;border-radius:999px;cursor:pointer;white-space:nowrap;transition:.3s}
+.nav button:hover{color:var(--tx);background:var(--glass)}
+.nav button.on{color:#04211b;background:linear-gradient(135deg,var(--a),var(--b));box-shadow:0 0 18px rgba(45,226,180,.45)}
+.wrap{display:grid;grid-template-columns:270px 1fr;gap:22px;max-width:1280px;margin:22px auto;padding:0 18px}
+aside{position:sticky;top:78px;align-self:start;background:var(--glass);border:1px solid var(--line);border-radius:var(--r);padding:24px 18px;text-align:center;backdrop-filter:blur(10px);box-shadow:8px 8px 24px rgba(0,0,0,.35),-4px -4px 14px rgba(255,255,255,.03)}
+.ava{width:120px;height:120px;margin:0 auto 12px;border-radius:50%;padding:4px;background:conic-gradient(var(--a),var(--b),var(--c),var(--a));animation:spin 8s linear infinite}
+.ava svg{display:block;width:100%;height:100%;border-radius:50%;background:var(--bg2);animation:spin 8s linear infinite reverse}
+@keyframes spin{to{transform:rotate(360deg)}}
+aside h3{font-size:1.1rem}
+.info{margin-top:14px;text-align:left;display:grid;gap:10px}
+.info div{background:rgba(0,0,0,.25);border-radius:12px;padding:9px 12px;font-size:.88rem}
+.info small{display:block;color:var(--mut);font-size:.72rem}
+.info i{color:var(--a);width:18px}
+main{min-width:0}
+.tab{display:none;animation:in .5s ease}
+.tab.on{display:block}
+@keyframes in{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.ttl{font-size:1.7rem;margin-bottom:6px}
+.sub{color:var(--mut);margin-bottom:18px}
+.card{background:var(--glass);border:1px solid var(--line);border-radius:var(--r);padding:20px;margin-bottom:16px;backdrop-filter:blur(8px);transition:.3s}
+.card:hover{border-color:rgba(45,226,180,.5)}
+.card h3{margin-bottom:10px;font-size:1.1rem}
+.card h3 i{color:var(--a);margin-right:8px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px}
+.mini{background:rgba(0,0,0,.25);border-radius:14px;padding:14px;border-left:4px solid var(--a)}
+.mini b{display:block;font-family:'Sora';margin-bottom:4px}
+.mini.b{border-color:var(--b)}.mini.c{border-color:var(--c)}.mini.r{border-color:var(--bad)}
+ul.pts{list-style:none;display:grid;gap:8px}
+ul.pts li{padding-left:26px;position:relative}
+ul.pts li:before{content:"\f058";font-family:"Font Awesome 6 Free";font-weight:900;position:absolute;left:0;color:var(--a)}
+.chain{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:10px 0}
+.node{padding:10px 14px;border-radius:14px;background:rgba(0,0,0,.3);border:1px solid var(--line);text-align:center;font-weight:700;font-size:.9rem}
+.node small{display:block;font-weight:400;color:var(--mut);font-size:.72rem}
+.chain>i{color:var(--c)}
+.web{width:100%;max-width:560px;display:block;margin:auto}
+.pyr{display:flex;flex-direction:column;align-items:center;gap:6px;margin-top:8px}
+.pyr div{padding:8px;border-radius:10px;text-align:center;font-weight:700;font-size:.85rem;color:#04211b;background:linear-gradient(135deg,var(--a),var(--b))}
+table{width:100%;border-collapse:collapse;font-size:.92rem}
+th,td{padding:10px 12px;text-align:left;border-bottom:1px solid var(--line)}
+th{color:var(--a);font-family:'Sora';font-size:.82rem}
+.tw{overflow-x:auto}
+label{display:block;font-weight:700;margin:12px 0 6px}
+textarea,input[type=text]{width:100%;padding:12px 14px;border-radius:12px;border:1px solid var(--line);background:rgba(0,0,0,.3);color:var(--tx);font:1rem 'Nunito';outline:none;transition:.3s}
+textarea{min-height:90px;resize:vertical}
+textarea:focus,input:focus{border-color:var(--a);box-shadow:0 0 0 3px rgba(45,226,180,.2)}
+.btn{border:0;cursor:pointer;font:700 .95rem 'Nunito';padding:11px 20px;border-radius:999px;color:#04211b;background:linear-gradient(135deg,var(--a),var(--b));transition:.25s;margin:6px 6px 0 0}
+.btn:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(45,226,180,.35)}
+.btn.red{background:linear-gradient(135deg,#ff6b7a,#ff9a6b)}
+.btn.ghost{background:var(--glass);color:var(--tx);border:1px solid var(--line)}
+.video{position:relative;padding-top:56.25%;border-radius:var(--r);overflow:hidden;border:1px solid var(--line);box-shadow:0 0 30px rgba(63,167,255,.25)}
+.video iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.qtop{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:10px;font-weight:700}
+.bar{height:8px;border-radius:9px;background:rgba(0,0,0,.35);overflow:hidden;margin-bottom:14px}
+.bar div{height:100%;width:100%;background:linear-gradient(90deg,var(--a),var(--c));transition:width 1s linear}
+.timer{color:var(--c)}
+.q{font:700 1.2rem 'Sora';margin-bottom:16px}
+.opts{display:grid;gap:10px}
+.opt{display:flex;gap:12px;align-items:center;text-align:left;padding:14px 16px;border-radius:14px;border:1px solid var(--line);background:rgba(0,0,0,.28);color:var(--tx);font:600 1rem 'Nunito';cursor:pointer;transition:.25s}
+.opt:hover:not(:disabled){transform:translateX(6px);border-color:var(--b)}
+.opt b{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:var(--glass);flex:none}
+.opt.ok{background:rgba(45,226,180,.25);border-color:var(--a);animation:pop .5s}
+.opt.no{background:rgba(255,107,122,.25);border-color:var(--bad);animation:shake .45s}
+@keyframes pop{50%{transform:scale(1.04)}}
+@keyframes shake{25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
+.fb{min-height:30px;margin-top:14px;font-weight:700}
+.big{font:800 3.4rem 'Sora';background:linear-gradient(135deg,var(--a),var(--c));-webkit-background-clip:text;background-clip:text;color:transparent}
+.center{text-align:center}
+.emoji{position:fixed;font-size:2rem;pointer-events:none;animation:fly 1.4s ease-out forwards;z-index:90}
+@keyframes fly{from{opacity:1;transform:translateY(0)}to{opacity:0;transform:translateY(-160px) rotate(40deg)}}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.65);display:none;place-items:center;z-index:100;padding:18px}
+.modal.on{display:grid}
+.modal .box{background:var(--bg2);border:1px solid var(--line);border-radius:var(--r);padding:24px;max-width:360px;width:100%;animation:in .3s}
+.warn{color:var(--bad);font-weight:700;margin-top:8px;min-height:22px}
+@media(max-width:860px){.wrap{grid-template-columns:1fr}aside{position:static}.brand span{display:none}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+button:focus-visible{outline:3px solid var(--c);outline-offset:2px}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="brand"><i class="fa-solid fa-leaf"></i> <span>EkoBelajar</span></div>
+  <nav class="nav" id="nav">
+    <button data-t="materi" class="on">📚 Materi Pelajaran</button>
+    <button data-t="lkpd">📝 LKPD</button>
+    <button data-t="video">🎥 Video Pembelajaran</button>
+    <button data-t="quiz">🎮 Latihan Soal</button>
+    <button data-t="rekap">📊 Rekap Nilai</button>
+  </nav>
+</header>
+
+<div class="wrap">
+<aside>
+  <div class="ava"><svg viewBox="0 0 100 100"><circle cx="50" cy="38" r="17" fill="#2de2b4"/><path d="M14 92c3-22 18-32 36-32s33 10 36 32z" fill="#3fa7ff"/></svg></div>
+  <h3>RINAWATI</h3>
+  <p style="color:var(--mut);font-size:.85rem">Guru Kelas V</p>
+  <div class="info">
+    <div><small>Nama Penulis</small><i class="fa-solid fa-user-pen"></i>RINAWATI</div>
+    <div><small>Nama Sekolah</small><i class="fa-solid fa-school"></i>SD Negeri Liwung</div>
+    <div><small>Mata Pelajaran</small><i class="fa-solid fa-flask"></i>IPAS</div>
+    <div><small>Materi Pokok</small><i class="fa-solid fa-sitemap"></i>RANTAI MAKANAN</div>
+  </div>
+</aside>
+
+<main>
+<!-- MATERI -->
+<section class="tab on" id="materi">
+  <h1 class="ttl">Rantai Makanan</h1>
+  <p class="sub">Kelas V · Fase C · Siapa makan siapa, dan ke mana energi mengalir?</p>
+
+  <div class="card"><h3><i class="fa-solid fa-earth-asia"></i>1. Komponen Ekosistem</h3>
+    <p>Ekosistem adalah hubungan saling memengaruhi antara makhluk hidup dan lingkungannya.</p>
+    <div class="grid" style="margin-top:12px">
+      <div class="mini"><b>🌱 Biotik (makhluk hidup)</b>Tumbuhan, hewan, manusia, jamur, dan bakteri.</div>
+      <div class="mini b"><b>☀️ Abiotik (tak hidup)</b>Cahaya matahari, air, tanah, udara, suhu, dan batuan.</div>
+    </div>
+  </div>
+
+  <div class="card"><h3><i class="fa-solid fa-users-gear"></i>2. Peran Makhluk Hidup</h3>
+    <div class="grid">
+      <div class="mini"><b>🌾 Produsen</b>Membuat makanan sendiri lewat fotosintesis. Contoh: padi, rumput.</div>
+      <div class="mini b"><b>🐛 Konsumen I</b>Pemakan tumbuhan (herbivora). Contoh: ulat, belalang, tikus.</div>
+      <div class="mini c"><b>🐸 Konsumen II</b>Pemakan konsumen I. Contoh: katak, kadal.</div>
+      <div class="mini r"><b>🦅 Konsumen III</b>Pemakan konsumen II. Contoh: ular, elang.</div>
+      <div class="mini"><b>🍄 Pengurai</b>Mengurai sisa makhluk hidup menjadi zat hara. Contoh: jamur, bakteri.</div>
+    </div>
+    <p style="margin-top:12px">Berdasarkan makanannya: <b>herbivora</b> (pemakan tumbuhan), <b>karnivora</b> (pemakan daging), dan <b>omnivora</b> (pemakan keduanya, misalnya ayam dan manusia).</p>
+  </div>
+
+  <div class="card"><h3><i class="fa-solid fa-link"></i>3. Rantai Makanan</h3>
+    <p>Rantai makanan adalah urutan peristiwa makan dan dimakan yang menunjukkan perpindahan energi. Panah berarti <b>“dimakan oleh”</b> dan menunjukkan arah energi.</p>
+    <div class="chain"><div class="node">🌾 Padi<small>Produsen</small></div><i class="fa-solid fa-arrow-right"></i><div class="node">🐭 Tikus<small>Konsumen I</small></div><i class="fa-solid fa-arrow-right"></i><div class="node">🐍 Ular<small>Konsumen II</small></div><i class="fa-solid fa-arrow-right"></i><div class="node">🦅 Elang<small>Konsumen III</small></div><i class="fa-solid fa-arrow-right"></i><div class="node">🍄 Pengurai<small>Mengurai sisa</small></div></div>
+    <div class="chain"><div class="node">🌿 Rumput<small>Produsen</small></div><i class="fa-solid fa-arrow-right"></i><div class="node">🦗 Belalang<small>Konsumen I</small></div><i class="fa-solid fa-arrow-right"></i><div class="node">🐸 Katak<small>Konsumen II</small></div><i class="fa-solid fa-arrow-right"></i><div class="node">🐍 Ular<small>Konsumen III</small></div></div>
+    <ul class="pts" style="margin-top:10px"><li>Selalu dimulai dari produsen, karena hanya produsen yang bisa membuat makanan sendiri.</li><li>Sumber energi utama adalah matahari.</li><li>Pengurai mengembalikan zat hara ke tanah untuk dipakai produsen lagi.</li></ul>
+  </div>
+
+  <div class="card"><h3><i class="fa-solid fa-diagram-project"></i>4. Jaring-Jaring Makanan</h3>
+    <p>Jaring-jaring makanan adalah beberapa rantai makanan yang saling berhubungan. Satu makhluk hidup bisa memakan dan dimakan oleh lebih dari satu jenis.</p>
+    <svg class="web" viewBox="0 0 560 300" font-family="Nunito" font-size="13" text-anchor="middle">
+      <defs><marker id="ar" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L8 4L0 8z" fill="#ffc247"/></marker></defs>
+      <g stroke="#ffc247" stroke-width="1.6" marker-end="url(#ar)" fill="none">
+        <line x1="100" y1="250" x2="135" y2="165"/><line x1="100" y1="250" x2="285" y2="165"/><line x1="440" y1="250" x2="320" y2="165"/><line x1="440" y1="250" x2="430" y2="165"/>
+        <line x1="150" y1="130" x2="235" y2="95"/><line x1="300" y1="130" x2="265" y2="95"/><line x1="430" y1="130" x2="320" y2="85"/><line x1="260" y1="60" x2="260" y2="38"/></g>
+      <g fill="#0c2630" stroke="#2de2b4" stroke-width="1.5"><rect x="45" y="250" width="110" height="34" rx="17"/><rect x="385" y="250" width="110" height="34" rx="17"/><rect x="85" y="130" width="100" height="34" rx="17"/><rect x="250" y="130" width="100" height="34" rx="17"/><rect x="385" y="130" width="100" height="34" rx="17"/><rect x="205" y="62" width="110" height="34" rx="17"/><rect x="205" y="4" width="110" height="34" rx="17"/></g>
+      <g fill="#e8f6f3"><text x="100" y="272">🌾 Padi</text><text x="440" y="272">🌿 Rumput</text><text x="135" y="152">🐛 Ulat</text><text x="300" y="152">🐭 Tikus</text><text x="435" y="152">🦗 Belalang</text><text x="260" y="84">🐸 Katak</text><text x="260" y="26">🐍 Ular</text></g>
+    </svg>
+  </div>
+
+  <div class="card"><h3><i class="fa-solid fa-bolt"></i>5. Aliran Energi</h3>
+    <p>Energi makin berkurang di setiap tingkat, sehingga makhluk di tingkat atas jumlahnya lebih sedikit.</p>
+    <div class="pyr"><div style="width:30%">Pemangsa puncak</div><div style="width:50%">Konsumen II</div><div style="width:70%">Konsumen I</div><div style="width:90%">Produsen</div></div>
+  </div>
+
+  <div class="card"><h3><i class="fa-solid fa-scale-balanced"></i>6. Keseimbangan dan Dampak Gangguan</h3>
+    <div class="tw"><table><tr><th>Gangguan</th><th>Dampak berantai</th></tr>
+    <tr><td>Ular diburu berlebihan</td><td>Tikus bertambah, padi banyak dimakan, panen turun.</td></tr>
+    <tr><td>Pestisida berlebihan</td><td>Katak dan serangga bermanfaat ikut mati, rantai makanan terputus.</td></tr>
+    <tr><td>Hutan atau pohon ditebang</td><td>Habitat elang dan burung hilang, hama meningkat.</td></tr>
+    <tr><td>Sampah menumpuk</td><td>Pengurai berkurang, tanah kurang subur.</td></tr></table></div>
+    <p style="margin-top:12px"><b>Upaya menjaga keseimbangan:</b> tidak memburu satwa liar, memakai pengendali hama alami (misalnya burung hantu), mengurangi pestisida, dan menjaga kebersihan lingkungan.</p>
+  </div>
+</section>
+
+<!-- LKPD -->
+<section class="tab" id="lkpd">
+  <h1 class="ttl">LKPD: Detektif Ekosistem</h1>
+  <p class="sub">Lembar Kerja Peserta Didik · Rantai Makanan</p>
+  <div class="card"><h3><i class="fa-solid fa-list-check"></i>Petunjuk Pengerjaan</h3>
+    <ul class="pts"><li>Isi identitas kelompok atau namamu dengan lengkap.</li><li>Baca setiap soal dengan teliti dan diskusikan bersama kelompok.</li><li>Tulis jawaban pada kotak yang tersedia. Jawaban tersimpan otomatis di perangkat ini.</li><li>Bertanyalah kepada guru jika ada yang belum dipahami.</li><li>Setelah selesai, klik “Unduh Jawaban” dan kumpulkan kepada guru.</li></ul>
+  </div>
+  <div class="card"><h3><i class="fa-solid fa-id-card"></i>Identitas</h3>
+    <label>Nama kelompok / nama siswa</label><input type="text" data-k="nama" placeholder="Contoh: Kelompok Elang">
+    <label>Kelas</label><input type="text" data-k="kls" placeholder="Contoh: V">
+  </div>
+  <div class="card"><h3><i class="fa-solid fa-magnifying-glass"></i>Tugas 1: Mengelompokkan peran</h3>
+    <p>Kelompokkan: padi, belalang, katak, ular, elang, jamur, tikus, rumput. Tulis ke dalam produsen, konsumen I, II, III, dan pengurai.</p>
+    <textarea data-k="t1" placeholder="Produsen: ...&#10;Konsumen I: ..."></textarea></div>
+  <div class="card"><h3><i class="fa-solid fa-link"></i>Tugas 2: Menyusun rantai makanan</h3>
+    <p>Susun 3 rantai makanan berbeda dari hewan dan tumbuhan di atas. Gunakan tanda panah (→).</p>
+    <textarea data-k="t2" placeholder="1. Padi → ..."></textarea></div>
+  <div class="card"><h3><i class="fa-solid fa-diagram-project"></i>Tugas 3: Jaring-jaring makanan</h3>
+    <p>Tuliskan minimal 2 makhluk hidup yang punya lebih dari satu jenis makanan atau pemangsa, lalu jelaskan.</p>
+    <textarea data-k="t3"></textarea></div>
+  <div class="card"><h3><i class="fa-solid fa-triangle-exclamation"></i>Tugas 4: Analisis dampak</h3>
+    <p>Apa yang terjadi pada sawah jika semua ular hilang? Jelaskan dampak berantainya.</p>
+    <textarea data-k="t4"></textarea></div>
+  <div class="card"><h3><i class="fa-solid fa-seedling"></i>Tugas 5: Solusi dan kesimpulan</h3>
+    <p>Tulis 2 tindakan untuk menjaga keseimbangan ekosistem, lalu tulis kesimpulan pelajaran hari ini dengan kalimatmu sendiri.</p>
+    <textarea data-k="t5"></textarea>
+    <button class="btn" id="dl"><i class="fa-solid fa-download"></i> Unduh Jawaban</button>
+    <button class="btn ghost" id="clr"><i class="fa-solid fa-eraser"></i> Kosongkan Isian</button>
+    <p id="lmsg" style="color:var(--a);font-weight:700;margin-top:8px"></p></div>
+</section>
+
+<!-- VIDEO -->
+<section class="tab" id="video">
+  <h1 class="ttl">Video Pembelajaran</h1>
+  <p class="sub">Tonton dengan saksama, lalu catat hal penting untuk LKPD.</p>
+  <div class="video"><iframe src="https://drive.google.com/file/d/1sxKbVRKeHiPT8LcLqIWrvix9b5Jlm0ru/preview" allow="autoplay; fullscreen" allowfullscreen title="Video pembelajaran rantai makanan"></iframe></div>
+  <p style="margin-top:12px;color:var(--mut)">Video tidak tampil? <a style="color:var(--a)" target="_blank" rel="noopener" href="https://drive.google.com/file/d/1sxKbVRKeHiPT8LcLqIWrvix9b5Jlm0ru/view?usp=drive_link">Buka di Google Drive</a>. Pastikan berkas video dibagikan dengan akses “Siapa saja yang memiliki link”.</p>
+</section>
+
+<!-- QUIZ -->
+<section class="tab" id="quiz">
+  <h1 class="ttl">Latihan Soal</h1>
+  <p class="sub">10 soal acak, 30 detik per soal. Soal dan urutan jawaban berbeda setiap kali bermain.</p>
+  <div class="card center" id="qstart"><div style="font-size:3.4rem">🎮</div><h3>Siap jadi Detektif Ekosistem?</h3><p style="color:var(--mut)">Jawab cepat dan tepat. Setiap jawaban benar bernilai 10.</p><button class="btn" id="go"><i class="fa-solid fa-play"></i> Mulai Kuis</button></div>
+  <div class="card" id="qplay" style="display:none">
+    <div class="qtop"><span id="qn"></span><span class="timer"><i class="fa-solid fa-stopwatch"></i> <span id="tm">30</span> dtk</span><span><i class="fa-solid fa-star" style="color:var(--c)"></i> <span id="sc">0</span></span></div>
+    <div class="bar"><div id="tb"></div></div>
+    <div class="q" id="qq"></div><div class="opts" id="qo"></div>
+    <div class="fb" id="fb"></div>
+    <button class="btn" id="nx" style="display:none">Lanjut <i class="fa-solid fa-arrow-right"></i></button>
+  </div>
+  <div class="card center" id="qend" style="display:none">
+    <div class="big" id="fs">0</div><h3 id="fm"></h3><p style="color:var(--mut)" id="ft"></p>
+    <div style="max-width:380px;margin:14px auto;text-align:left">
+      <label>Nama Lengkap</label><input type="text" id="nm" maxlength="40">
+      <label>Kelas</label><input type="text" id="kl" maxlength="10" placeholder="Contoh: 5A"></div>
+    <button class="btn" id="sv"><i class="fa-solid fa-floppy-disk"></i> Simpan Nilai</button>
+    <button class="btn ghost" id="rp"><i class="fa-solid fa-rotate"></i> Main Lagi</button>
+    <p class="warn" id="sm"></p>
+  </div>
+</section>
+
+<!-- REKAP -->
+<section class="tab" id="rekap">
+  <h1 class="ttl">Rekap Nilai</h1>
+  <p class="sub">Data tersimpan di browser ini dan tidak hilang saat halaman dimuat ulang.</p>
+  <div class="card"><div class="tw"><table><thead><tr><th>No</th><th>Nama</th><th>Kelas</th><th>Skor</th><th>Waktu</th><th>Tanggal</th></tr></thead><tbody id="rb"></tbody></table></div>
+  <button class="btn red" id="del"><i class="fa-solid fa-trash"></i> Hapus Rekap Nilai</button></div>
+</section>
+</main>
+</div>
+
+<div class="modal" id="md"><div class="box">
+  <h3><i class="fa-solid fa-lock" style="color:var(--c)"></i> Masukkan PIN</h3>
+  <p style="color:var(--mut);margin:8px 0">Hanya guru yang boleh menghapus rekap nilai.</p>
+  <input type="text" id="pin" inputmode="numeric" maxlength="4" autocomplete="off" style="-webkit-text-security:disc">
+  <p class="warn" id="pw"></p>
+  <button class="btn red" id="pok">Hapus</button><button class="btn ghost" id="pcl">Batal</button>
+</div></div>
+
+<script>
+const $=s=>document.querySelector(s),$$=s=>document.querySelectorAll(s);
+const LS=(k,v)=>{try{if(v===undefined)return JSON.parse(localStorage.getItem(k));v===null?localStorage.removeItem(k):localStorage.setItem(k,JSON.stringify(v))}catch(e){return null}};
+
+/* Navigasi */
+function show(t){$$('.tab').forEach(x=>x.classList.toggle('on',x.id===t));$$('#nav button').forEach(b=>b.classList.toggle('on',b.dataset.t===t));if(t==='rekap')renderRekap();window.scrollTo({top:0,behavior:'smooth'})}
+$$('#nav button').forEach(b=>b.onclick=()=>show(b.dataset.t));
+
+/* LKPD */
+const lk=LS('lkpd')||{};
+$$('[data-k]').forEach(e=>{e.value=lk[e.dataset.k]||'';e.oninput=()=>{lk[e.dataset.k]=e.value;LS('lkpd',lk)}});
+$('#dl').onclick=()=>{const L=[['nama','Nama'],['kls','Kelas'],['t1','Tugas 1'],['t2','Tugas 2'],['t3','Tugas 3'],['t4','Tugas 4'],['t5','Tugas 5']];
+  const txt='LKPD RANTAI MAKANAN - IPAS KELAS V\n\n'+L.map(([k,n])=>n+':\n'+(lk[k]||'-')).join('\n\n');
+  const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([txt],{type:'text/plain'}));a.download='LKPD_Rantai_Makanan_'+(lk.nama||'siswa').replace(/\s+/g,'_')+'.txt';a.click();$('#lmsg').textContent='Jawaban berhasil diunduh.'};
+$('#clr').onclick=()=>{if(confirm('Kosongkan semua isian LKPD?')){$$('[data-k]').forEach(e=>e.value='');Object.keys(lk).forEach(k=>delete lk[k]);LS('lkpd',lk);$('#lmsg').textContent='Isian dikosongkan.'}};
+
+/* Bank soal: [pertanyaan, jawaban benar, salah1, salah2, salah3] */
+const BANK=[
+["Makhluk hidup yang dapat membuat makanan sendiri disebut ...","Produsen","Konsumen","Pengurai","Pemangsa"],
+["Sumber energi utama dalam rantai makanan adalah ...","Matahari","Air","Tanah","Udara"],
+["Rantai makanan yang tersusun benar adalah ...","Padi → Tikus → Ular → Elang","Elang → Ular → Tikus → Padi","Tikus → Padi → Ular → Elang","Ular → Padi → Elang → Tikus"],
+["Pada rantai makanan, tanda panah menunjukkan ...","Perpindahan energi dari yang dimakan ke pemakan","Hewan yang paling kuat","Arah tumbuhnya tanaman","Arah gerak angin"],
+["Hewan pemakan tumbuhan disebut ...","Herbivora","Karnivora","Omnivora","Dekomposer"],
+["Hewan pemakan tumbuhan dan daging (omnivora) contohnya ...","Ayam","Sapi","Harimau","Kambing"],
+["Berikut yang termasuk pengurai adalah ...","Jamur","Rumput","Katak","Elang"],
+["Peran pengurai dalam ekosistem adalah ...","Mengurai sisa makhluk hidup menjadi zat hara","Membuat makanan dengan klorofil","Memangsa hewan kecil","Menghasilkan sinar matahari"],
+["Pada rantai Rumput → Belalang → Katak → Ular, belalang berperan sebagai ...","Konsumen I","Produsen","Konsumen II","Pengurai"],
+["Pada rantai Rumput → Belalang → Katak → Ular, katak berperan sebagai ...","Konsumen II","Produsen","Konsumen I","Pengurai"],
+["Beberapa rantai makanan yang saling berhubungan disebut ...","Jaring-jaring makanan","Piramida makanan","Siklus air","Rantai tunggal"],
+["Jika jumlah ular di sawah berkurang drastis, jumlah tikus akan ...","Bertambah","Berkurang","Tetap","Hilang"],
+["Contoh komponen abiotik dalam ekosistem adalah ...","Cahaya matahari","Belalang","Jamur","Padi"],
+["Rantai makanan selalu diawali produsen karena ...","Hanya produsen yang dapat membuat makanan sendiri","Produsen paling besar","Produsen paling cepat bergerak","Produsen tidak pernah dimakan"],
+["Pemangsa puncak pada sawah yang paling tepat adalah ...","Elang","Padi","Belalang","Jamur"],
+["Pemakaian pestisida berlebihan dapat menyebabkan ...","Hewan bermanfaat ikut mati dan keseimbangan terganggu","Hasil panen pasti naik","Jumlah pemangsa bertambah","Tidak ada dampak apa pun"],
+["Agar dapat membuat makanan, tumbuhan hijau membutuhkan ...","Cahaya matahari, air, dan karbon dioksida","Hanya tanah","Daging hewan","Oksigen saja"],
+["Petani memanfaatkan burung hantu untuk ...","Mengendalikan hama tikus","Menyuburkan padi","Mengurai sampah","Menghasilkan air"],
+["Hewan pemakan daging disebut karnivora, contohnya ...","Harimau","Kelinci","Sapi","Belalang"],
+["Yang termasuk komponen biotik adalah ...","Katak","Batu","Air","Udara"],
+["Semakin tinggi tingkat dalam rantai makanan, jumlah makhluk hidupnya biasanya ...","Semakin sedikit","Semakin banyak","Selalu sama","Tidak tentu dan tanpa pola"],
+["Contoh rantai makanan yang benar di kolam adalah ...","Ganggang → Kutu air → Ikan kecil → Ikan besar","Ikan besar → Ikan kecil → Kutu air → Ganggang","Kutu air → Ganggang → Ikan besar","Ikan kecil → Ganggang → Kutu air"],
+["Jika semua produsen di suatu ekosistem hilang, maka ...","Seluruh konsumen akhirnya kekurangan makanan","Hanya pengurai yang terdampak","Tidak ada yang berubah","Pemangsa menjadi produsen"]
+];
+const shuf=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.random()*(i+1)|0;[a[i],a[j]]=[a[j],a[i]]}return a};
+let qs=[],qi=0,score=0,t0=0,tleft=30,iv=null,locked=false,total=0,saved=false;
+let AC;function beep(f,d,ty){try{AC=AC||new (window.AudioContext||window.webkitAudioContext)();const o=AC.createOscillator(),g=AC.createGain();o.type=ty||'sine';o.frequency.value=f;g.gain.value=.08;o.connect(g);g.connect(AC.destination);o.start();g.gain.exponentialRampToValueAtTime(.0001,AC.currentTime+d);o.stop(AC.currentTime+d)}catch(e){}}
+function pop(em){for(let i=0;i<7;i++){const s=document.createElement('span');s.className='emoji';s.textContent=em;s.style.left=(20+Math.random()*60)+'vw';s.style.top=(45+Math.random()*25)+'vh';s.style.animationDelay=i*70+'ms';document.body.appendChild(s);setTimeout(()=>s.remove(),1700)}}
+function view(id){['qstart','qplay','qend'].forEach(x=>$('#'+x).style.display=x===id?'block':'none')}
+function start(){qs=shuffle10();qi=0;score=0;saved=false;t0=Date.now();$('#sc').textContent=0;view('qplay');ask()}
+function shuffle10(){return shuf(BANK).slice(0,10).map(q=>({q:q[0],c:q[1],o:shuf(q.slice(1))}))}
+function ask(){locked=false;const x=qs[qi];$('#qn').textContent='Soal '+(qi+1)+' / 10';$('#qq').textContent=x.q;$('#fb').textContent='';$('#nx').style.display='none';
+  $('#qo').innerHTML='';x.o.forEach((t,i)=>{const b=document.createElement('button');b.className='opt';b.innerHTML='<b>'+'ABCD'[i]+'</b><span></span>';b.lastChild.textContent=t;b.onclick=()=>pick(b,t);$('#qo').appendChild(b)});
+  clearInterval(iv);tleft=30;tick();iv=setInterval(()=>{tleft--;tick();if(tleft<=0){clearInterval(iv);pick(null,null)}},1000)}
+function tick(){$('#tm').textContent=tleft;$('#tb').style.width=(tleft/30*100)+'%'}
+function pick(btn,t){if(locked)return;locked=true;clearInterval(iv);const x=qs[qi];
+  $$('.opt').forEach(o=>{o.disabled=true;if(o.lastChild.textContent===x.c)o.classList.add('ok')});
+  if(t===x.c){score+=10;$('#sc').textContent=score;$('#fb').innerHTML='<span style="color:var(--a)">🎉 Benar! Hebat sekali!</span>';beep(660,.15);setTimeout(()=>beep(880,.25),130);pop('⭐')}
+  else{if(btn)btn.classList.add('no');$('#fb').innerHTML='<span style="color:var(--bad)">'+(t===null?'⏰ Waktu habis. ':'😅 Belum tepat. ')+'Jawaban benar: '+x.c+'</span>';beep(200,.35,'sawtooth')}
+  $('#nx').style.display='inline-block';$('#nx').innerHTML=qi===9?'Lihat Hasil <i class="fa-solid fa-flag-checkered"></i>':'Lanjut <i class="fa-solid fa-arrow-right"></i>'}
+function fmt(s){return String(s/60|0).padStart(2,'0')+':'+String(s%60).padStart(2,'0')}
+$('#nx').onclick=()=>{if(qi<9){qi++;ask()}else{total=Math.round((Date.now()-t0)/1000);$('#fs').textContent=score;
+  $('#fm').textContent=score>=80?'Luar biasa! Kamu Detektif Ekosistem sejati 🏆':score>=60?'Bagus! Terus berlatih 👍':'Ayo belajar lagi, kamu pasti bisa 💪';
+  $('#ft').textContent='Benar '+score/10+' dari 10 soal · Waktu '+fmt(total);$('#sm').textContent='';$('#sv').disabled=false;$('#nm').value='';$('#kl').value='';view('qend');if(score>=60)pop('🎉')}};
+$('#go').onclick=start;$('#rp').onclick=start;
+$('#sv').onclick=()=>{const n=$('#nm').value.trim(),k=$('#kl').value.trim(),m=$('#sm');
+  if(!n||!k){m.style.color='var(--bad)';m.textContent='Isi Nama Lengkap dan Kelas terlebih dahulu.';return}
+  if(saved)return;const d=LS('rekap')||[];d.push({n,k,s:score,w:total,d:new Date().toLocaleString('id-ID',{dateStyle:'medium',timeStyle:'short'})});LS('rekap',d);saved=true;$('#sv').disabled=true;
+  m.style.color='var(--a)';m.textContent='Nilai tersimpan. Lihat di menu Rekap Nilai.'};
+
+/* Rekap */
+function renderRekap(){const d=LS('rekap')||[],b=$('#rb');b.innerHTML='';
+  if(!d.length){b.innerHTML='<tr><td colspan="6" style="color:var(--mut);text-align:center">Belum ada data. Mainkan kuis di menu Latihan Soal.</td></tr>';return}
+  d.forEach((r,i)=>{const tr=document.createElement('tr');[i+1,r.n,r.k,r.s,fmt(r.w),r.d].forEach(v=>{const td=document.createElement('td');td.textContent=v;tr.appendChild(td)});b.appendChild(tr)})}
+const md=$('#md');
+$('#del').onclick=()=>{$('#pin').value='';$('#pw').textContent='';md.classList.add('on');$('#pin').focus()};
+$('#pcl').onclick=()=>md.classList.remove('on');
+function tryPin(){if($('#pin').value==='4321'){LS('rekap',null);md.classList.remove('on');renderRekap()}else{$('#pw').textContent='PIN salah. Rekap nilai tidak dihapus.';$('#pin').value=''}}
+$('#pok').onclick=tryPin;$('#pin').onkeydown=e=>{if(e.key==='Enter')tryPin()};
+renderRekap();
+</script>
+</body>
+</html>
